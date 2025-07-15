@@ -6,8 +6,8 @@ import os
 # path_simulation_folder = r"C:\WorkingFolder\BUA_Python\BUA_01_Context_Targets_FilterContext"
 # path_simulation_folder = r"C:\WorkingFolder\BUA_Python\BUA_02_Grid_Irradiation"
 # path_simulation_folder = r"C:\WorkingFolder\BUA_Python\BUA_03_UBES"
-path_simulation_folder = r"C:\WorkingFolder\BUA_Python\BUA_Test_04"
-
+# path_simulation_folder = r"C:\WorkingFolder\BUA_Python\BUA_Test_04"
+path_simulation_folder = r"C:\WorkingFolder\BUA_Python\BUA_Test_All"
 
 path_folder_data = r"C:\WorkingFolder\BUA_Python\Models_Context"
 path_folder_data1 = r"C:\WorkingFolder\BUA_Python\Models_Context\hbjson_models"
