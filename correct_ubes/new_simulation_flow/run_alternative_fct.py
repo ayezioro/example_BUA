@@ -1,10 +1,14 @@
 from bua.config.config_default_values_user_parameters import default_efficiency_computation_method
 from bua.simulation_steps import *
 
-from input_data import *
 
-
-def main():
+def run_alternative(path_simulation_folder,
+                    path_folder_hbjson,
+                    path_context_file_json,
+                    path_weather_file,
+                    cop_heating,
+                    cop_cooling,
+                    zone_area):
     """
     :return:
     """
@@ -16,24 +20,24 @@ def main():
     # Initialize urban canopy object
     urban_canopy_obj = SimulationCommonMethods.create_or_load_urban_canopy_object(
         path_simulation_folder=path_simulation_folder
-        )
+    )
 
     # Load context buildings
     SimulationLoadBuildingOrGeometry.add_buildings_from_lb_polyface3d_json_in_urban_canopy(
         urban_canopy_object=urban_canopy_obj,
         path_lb_polyface3d_json_file=path_context_file_json
-        )
+    )
 
     SimulationLoadBuildingOrGeometry.add_buildings_from_hbjson_to_urban_canopy(urban_canopy_object=urban_canopy_obj,
-                                                                               path_folder_hbjson=None,
-                                                                               path_file_hbjson=path_folder_data2,
+                                                                               path_folder_hbjson=path_folder_hbjson,
+                                                                               path_file_hbjson=None,
                                                                                are_buildings_targets=True
                                                                                )
     # Context Filtering
     SimulationBuildingManipulationFunctions.make_oriented_bounding_boxes_of_buildings_in_urban_canopy(
         urban_canopy_object=urban_canopy_obj,
         overwrite=True
-        )
+    )
 
     ContextSelection.perform_first_pass_of_context_filtering_on_buildings(urban_canopy_object=urban_canopy_obj,
                                                                           min_vf_criterion=0.001,
@@ -55,7 +59,7 @@ def main():
         path_weather_file=path_epw,
         ddy_file=None,
         overwrite=True
-        )
+    )
     # # Write IDF
     UrbanBuildingEnergySimulationFunctions.generate_idf_files_for_ubes_with_openstudio_in_urban_canopy(
         urban_canopy_obj=urban_canopy_obj,
@@ -63,7 +67,7 @@ def main():
         building_id_list=None,
         overwrite=True,
         silent=False
-        )
+    )
     # # Run IDF through EnergyPlus
     UrbanBuildingEnergySimulationFunctions.run_idf_files_with_energyplus_for_ubes_in_urban_canopy(
         urban_canopy_obj=urban_canopy_obj,
@@ -72,7 +76,7 @@ def main():
         overwrite=True,
         silent=True,
         run_in_parallel=False
-        )
+    )
     # # Extract results
     UrbanBuildingEnergySimulationFunctions.extract_results_from_ep_simulation(urban_canopy_obj=urban_canopy_obj,
                                                                               path_simulation_folder=path_simulation_folder,
@@ -80,18 +84,7 @@ def main():
                                                                               cop_cooling=cop_cooling
                                                                               )
 
-    ###############################################################################################################################
-    # # Save Urban Canopy Object
-    # SimulationCommonMethods.save_urban_canopy_object_to_pickle(urban_canopy_object=urban_canopy_obj,
-    #                                                            path_simulation_folder=path_simulation_folder
-    #                                                            )
-    # SimulationCommonMethods.save_urban_canopy_to_json(urban_canopy_object=urban_canopy_obj,
-    #                                                   path_simulation_folder=path_simulation_folder
-    #                                                   )
-    # # Load Urban Canopy Object
-    # urban_canopy_obj = SimulationCommonMethods.create_or_load_urban_canopy_object(
-    #     path_simulation_folder=path_simulation_folder
-    #     )
+
     ###############################################################################################################################
 
     # Generate mesh for BIPV
@@ -111,24 +104,13 @@ def main():
     SimFunSolarRadAndBipv.run_annual_solar_irradiance_simulation(urban_canopy_object=urban_canopy_obj,
                                                                  path_simulation_folder=path_simulation_folder,
                                                                  building_id_list=None,
-                                                                 path_weather_file=path_epw,
+                                                                 path_weather_file=path_weather_file,
                                                                  overwrite=True,
                                                                  north_angle=0,
                                                                  silent=True
                                                                  )
 
-    ###############################################################################################################################
-    # # Save Urban Canopy Object
-    # SimulationCommonMethods.save_urban_canopy_object_to_pickle(urban_canopy_object=urban_canopy_obj,
-    #                                                            path_simulation_folder=path_simulation_folder
-    #                                                            )
-    # SimulationCommonMethods.save_urban_canopy_to_json(urban_canopy_object=urban_canopy_obj,
-    #                                                   path_simulation_folder=path_simulation_folder
-    #                                                   )
-    # # Load Urban Canopy Object
-    # urban_canopy_obj = SimulationCommonMethods.create_or_load_urban_canopy_object(
-    #     path_simulation_folder=path_simulation_folder
-    #     )
+
     ###############################################################################################################################
 
     # BIPV Panel Simulation
@@ -168,7 +150,6 @@ def main():
                                              zone_area=zone_area
                                              )
 
-
     ###############################################################################################################################
     # Save Urban Canopy Object
     SimulationCommonMethods.save_urban_canopy_object_to_pickle(urban_canopy_object=urban_canopy_obj,
@@ -178,7 +159,3 @@ def main():
                                                       path_simulation_folder=path_simulation_folder
                                                       )
     ###############################################################################################################################
-
-
-if __name__ == '__main__':
-    main()

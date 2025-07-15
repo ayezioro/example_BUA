@@ -19,37 +19,28 @@ def main():
     ###############################################################################################################################
 
     # Generate mesh for BIPV
-    # SimFunSolarRadAndBipv.generate_sensor_grid(urban_canopy_object=urban_canopy_obj,
-    #                                            building_id_list=None,
-    #                                            bipv_on_facades=True,
-    #                                            bipv_on_roof=True,
-    #                                            roof_grid_size_x=2.05,
-    #                                            roof_grid_size_y=2.05,
-    #                                            facades_grid_size_x=1.0,
-    #                                            facades_grid_size_y=1.0,
-    #                                            offset_dist=0.1,
-    #                                            overwrite=True
-    #                                            )
     SimFunSolarRadAndBipv.generate_sensor_grid(urban_canopy_object=urban_canopy_obj,
-                                           building_id_list=None,
-                                           bipv_on_facades=True,
-                                           bipv_on_roof=True,
-                                           roof_grid_size_x= default_roof_grid_size_x,
-                                           roof_grid_size_y= default_roof_grid_size_y,
-                                           facades_grid_size_x= default_facades_grid_size_x,
-                                           facades_grid_size_y= default_facades_grid_size_y,
-                                           offset_dist= default_offset_dist,
-                                           overwrite=True
-                                           )
+                                               building_id_list=None,
+                                               bipv_on_facades=True,
+                                               bipv_on_roof=True,
+                                               roof_grid_size_x=2.05,
+                                               roof_grid_size_y=1.0,
+                                               facades_grid_size_x=1.05,
+                                               facades_grid_size_y=1.05,
+                                               offset_dist=0.1,
+                                               overwrite=True
+                                               )
+
+
 
     # Simulate Irradiation
     SimFunSolarRadAndBipv.run_annual_solar_irradiance_simulation(urban_canopy_object=urban_canopy_obj,
                                                                  path_simulation_folder=path_simulation_folder,
                                                                  building_id_list=None,
                                                                  path_weather_file=path_epw,
-                                                                 overwrite=False,
+                                                                 overwrite=True,
                                                                  north_angle=0,
-                                                                 silent=False
+                                                                 silent=True
                                                                  )
 
    ###############################################################################################################################
