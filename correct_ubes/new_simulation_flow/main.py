@@ -1,4 +1,3 @@
-
 import json
 
 from input import *
@@ -21,17 +20,34 @@ def main():
         name_simulation_folder = path_folder_hbjson.split("\\")[-1]
         path_simulation_folder = os.path.join(path_dir_simulation_all_alternatives, name_simulation_folder)
         # Check if simulated already in the json file
+        print(path_folder_hbjson, name_simulation_folder, path_simulation_folder)
+        # print(path_simulation_folder,'\n',
+        #                 path_folder_hbjson,'\n',
+        #                 path_brep_context,'\n',
+        #                 path_epw,'\n',
+        #                 cop_heating,'\n',
+        #                 cop_cooling,'\n',
+        #                 zone_area)
 
-        # run all the alternatives
-        run_alternative(path_simulation_folder=path_simulation_folder,
-                        path_folder_hbjson=path_folder_hbjson,
-                        path_context_file_json =path_brep_context,
-                        path_weather_file=path_epw,
-                        cop_heating=cop_heating,
-                        cop_cooling=cop_cooling,
-                        zone_area=zone_area)
+        get_results_only = True
 
+        if name_simulation_folder not in json_dict.keys():
+            # run all the alternatives
+            result_dict = run_alternative(path_simulation_folder=path_simulation_folder,
+                                          path_folder_hbjson=path_folder_hbjson,
+                                          path_context_file_json=path_brep_context,
+                                          path_weather_file=path_epw,
+                                          cop_heating=cop_heating,
+                                          cop_cooling=cop_cooling,
+                                          zone_area=zone_area,
+                                          get_results_only=get_results_only)
 
+            json_dict[name_simulation_folder] = result_dict
+
+            with open(path_json_results_file, "w") as outfile:
+                json.dump(json_dict, outfile)
+
+            print(json_dict[name_simulation_folder]["ubes"]["heating"]["yearly"])
 
 
 if __name__ == '__main__':
