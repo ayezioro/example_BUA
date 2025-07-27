@@ -92,7 +92,7 @@ def main():
 
     df_kpis = pd.DataFrame(kpi_records)
     # df_kpis.to_csv(os.path.join(output_folder, "kpis_results.csv"), index=False)
-    df_kpis.to_excel(os.path.join(output_folder, "kpis_results.xlsx"), index=False)
+    df_kpis.to_excel(os.path.join(output_folder, "kpis_results.xlsx"), index= False)
 
     print(f"✅ Export complete.\nFiles saved in: {output_folder}")
 
