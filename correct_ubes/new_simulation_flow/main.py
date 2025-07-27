@@ -20,7 +20,7 @@ def main():
         name_simulation_folder = path_folder_hbjson.split("\\")[-1]
         path_simulation_folder = os.path.join(path_dir_simulation_all_alternatives, name_simulation_folder)
         # Check if simulated already in the json file
-        print(path_folder_hbjson, name_simulation_folder, path_simulation_folder)
+        print('XX \n', path_folder_hbjson, ' name ', name_simulation_folder, path_simulation_folder)
         # print(path_simulation_folder,'\n',
         #                 path_folder_hbjson,'\n',
         #                 path_brep_context,'\n',
@@ -29,7 +29,7 @@ def main():
         #                 cop_cooling,'\n',
         #                 zone_area)
 
-        get_results_only = True
+        get_results_only = False    # Pay attention to this one ###
 
         if name_simulation_folder not in json_dict.keys():
             # run all the alternatives

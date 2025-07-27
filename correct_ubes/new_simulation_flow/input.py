@@ -1,19 +1,20 @@
 import os
 
 # path_dir_with_hbjson_alternatives = r"C:\Users\User\OneDrive - Technion\GH\Tanya\14\Alternatives_JSONs"
-# path_dir_with_hbjson_alternatives = r"C:\Users\User\OneDrive - Technion\GH\Tanya\14\TestAllRuns_Pycharm\Alternatives_JSONs"
-path_dir_with_hbjson_alternatives = r"C:\Users\ayezi\OneDrive - Technion\GH\Tanya\14\TRASHHHHHH"
+path_dir_with_hbjson_alternatives = r"C:\Users\User\OneDrive - Technion\GH\Tanya\14\TestAllRuns_Pycharm\Alternatives_JSONs"
+# path_dir_with_hbjson_alternatives = r"C:\Users\ayezi\OneDrive - Technion\GH\Tanya\14\TRASHHHHHH"
 
 list_hbjson_folders = [os.path.join(path_dir_with_hbjson_alternatives, dir_name) for dir_name in
                        os.listdir(path_dir_with_hbjson_alternatives) if
                        os.path.isdir(os.path.join(path_dir_with_hbjson_alternatives, dir_name))]
 
 # path_brep_context = r"C:\Users\User\OneDrive - Technion\GH\Tanya\14\Alternatives_JSONs\Context_from_brep.json"
-path_brep_context = r"C:\Users\User\OneDrive - Technion\GH\Tanya\14\TestAllRuns_Pycharm\Alternatives_JSONs\Context_from_brep.json"
+# path_brep_context = r"C:\Users\User\OneDrive - Technion\GH\Tanya\14\TestAllRuns_Pycharm\Alternatives_JSONs\Context_from_brep.json"
+path_brep_context = os.path.join(path_dir_with_hbjson_alternatives, "Context_from_brep.json")
 
 # path_dir_simulation_all_alternatives = r"C:\Users\User\OneDrive - Technion\GH\Tanya\14\TestAllRuns_Pycharm\Simulations"
-# path_dir_simulation_all_alternatives = r"C:\WorkingFolder\BUA_Python\14\TestAllRuns_Pycharm"
-path_dir_simulation_all_alternatives = r"C:\Users\ayezi\OneDrive - Technion\GH\Tanya\14\TRASH_SIMULATIONS"
+path_dir_simulation_all_alternatives = r"C:\WorkingFolder\BUA_Python\14\TestAllRuns_Pycharm"
+# path_dir_simulation_all_alternatives = r"C:\Users\ayezi\OneDrive - Technion\GH\Tanya\14\TRASH_SIMULATIONS"
 
 path_json_results_file = os.path.join(path_dir_simulation_all_alternatives, "results.json")
 
