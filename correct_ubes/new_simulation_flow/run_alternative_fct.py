@@ -28,10 +28,11 @@ def run_alternative(path_simulation_folder,
 
         # Load context buildings
         SimulationLoadBuildingOrGeometry.add_buildings_from_lb_polyface3d_json_in_urban_canopy(
-            urban_canopy_object=urban_canopy_obj,
+                urban_canopy_object=urban_canopy_obj,
             path_lb_polyface3d_json_file=path_context_file_json
         )
 
+        # SimulationLoadBuildingOrGeometry.add_buildings_from_hbjson_to_urban_canopy(urban_canopy_object=urban_canopy_obj,
         SimulationLoadBuildingOrGeometry.add_buildings_from_hbjson_to_urban_canopy(urban_canopy_object=urban_canopy_obj,
                                                                                    path_folder_hbjson=path_folder_hbjson,
                                                                                    path_file_hbjson=None,
@@ -43,6 +44,7 @@ def run_alternative(path_simulation_folder,
             overwrite=True
         )
 
+        # ContextSelection.perform_first_pass_of_context_filtering_on_buildings(urban_canopy_object=urban_canopy_obj,
         ContextSelection.perform_first_pass_of_context_filtering_on_buildings(urban_canopy_object=urban_canopy_obj,
                                                                               min_vf_criterion=0.001,
                                                                               overwrite=True
@@ -123,8 +125,8 @@ def run_alternative(path_simulation_folder,
                                                                      path_simulation_folder=path_simulation_folder,
                                                                      bipv_scenario_identifier="bipv_simulation_1",
                                                                      building_id_list=None,
-                                                                     roof_id_pv_tech="mitrex_roof c-Si M390-A1F default",
-                                                                     facades_id_pv_tech="mitrex_facades c-Si Solar Siding 350W - Dove Grey china default_1.0x1.0",
+                                                                     roof_id_pv_tech="mitrex_roof c-Si M390-A1F baseline 2025",
+                                                                     facades_id_pv_tech="mitrex_facades c-Si Solar Siding 350W - Dove Grey china 2025_1.0x1.0",
                                                                      roof_transport_id="China-Israel",
                                                                      facades_transport_id="China-Israel",
                                                                      roof_inverter_id="inverter_default",
