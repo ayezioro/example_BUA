@@ -27,7 +27,7 @@ def main():
             bes_records.append(record)
 
     df_bes = pd.DataFrame(bes_records)
-    df_bes.to_csv(os.path.join(output_folder, "building_energy_results.csv"), index=False)
+    # df_bes.to_csv(os.path.join(output_folder, "building_energy_results.csv"), index=False)
     df_bes.to_excel(os.path.join(output_folder, "building_energy_results.xlsx"), index=False)
 
     # === 2. Extract UBES (urban-level yearly energy) ===
@@ -40,7 +40,7 @@ def main():
         ubes_records.append(record)
 
     df_ubes = pd.DataFrame(ubes_records)
-    df_ubes.to_csv(os.path.join(output_folder, "urban_energy_results.csv"), index=False)
+    # df_ubes.to_csv(os.path.join(output_folder, "urban_energy_results.csv"), index=False)
     df_ubes.to_excel(os.path.join(output_folder, "urban_energy_results.xlsx"), index=False)
 
     # === 3. Extract KPIs ===
@@ -91,7 +91,7 @@ def main():
         kpi_records.append(record)
 
     df_kpis = pd.DataFrame(kpi_records)
-    df_kpis.to_csv(os.path.join(output_folder, "kpis_results.csv"), index=False)
+    # df_kpis.to_csv(os.path.join(output_folder, "kpis_results.csv"), index=False)
     df_kpis.to_excel(os.path.join(output_folder, "kpis_results.xlsx"), index=False)
 
     print(f"✅ Export complete.\nFiles saved in: {output_folder}")
