@@ -88,6 +88,19 @@ def run_alternative(path_simulation_folder,
                                                                                   cop_cooling=cop_cooling
                                                                                   )
 
+        # ###############################################################################################################################
+        # Comment this part AFTER you are sure the workflow is running just fine. In the meantime: Save simulated results in Urban Canopy
+        # Save Urban Canopy Object
+        SimulationCommonMethods.save_urban_canopy_object_to_pickle(urban_canopy_object=urban_canopy_obj,
+                                                                   path_simulation_folder=path_simulation_folder
+                                                                   )
+        SimulationCommonMethods.save_urban_canopy_to_json(urban_canopy_object=urban_canopy_obj,
+                                                          path_simulation_folder=path_simulation_folder
+                                                          )
+        # Initialize urban canopy object
+        urban_canopy_obj = SimulationCommonMethods.create_or_load_urban_canopy_object(
+            path_simulation_folder=path_simulation_folder
+        )
 
         ###############################################################################################################################
 
@@ -114,6 +127,19 @@ def run_alternative(path_simulation_folder,
                                                                      silent=True
                                                                      )
 
+        # ###############################################################################################################################
+        # Comment this part AFTER you are sure the workflow is running just fine. In the meantime: Save simulated results in Urban Canopy
+        # Save Urban Canopy Object
+        SimulationCommonMethods.save_urban_canopy_object_to_pickle(urban_canopy_object=urban_canopy_obj,
+                                                                   path_simulation_folder=path_simulation_folder
+                                                                   )
+        SimulationCommonMethods.save_urban_canopy_to_json(urban_canopy_object=urban_canopy_obj,
+                                                          path_simulation_folder=path_simulation_folder
+                                                          )
+        # Initialize urban canopy object
+        urban_canopy_obj = SimulationCommonMethods.create_or_load_urban_canopy_object(
+            path_simulation_folder=path_simulation_folder
+        )
 
         ###############################################################################################################################
 
@@ -156,7 +182,22 @@ def run_alternative(path_simulation_folder,
                                                  )
 
 
+        # ###############################################################################################################################
+        # Comment this part AFTER you are sure the workflow is running just fine. In the meantime: Save simulated results in Urban Canopy
+        # Save Urban Canopy Object
+        SimulationCommonMethods.save_urban_canopy_object_to_pickle(urban_canopy_object=urban_canopy_obj,
+                                                                   path_simulation_folder=path_simulation_folder
+                                                                   )
+        SimulationCommonMethods.save_urban_canopy_to_json(urban_canopy_object=urban_canopy_obj,
+                                                          path_simulation_folder=path_simulation_folder
+                                                          )
+        # Initialize urban canopy object
+        urban_canopy_obj = SimulationCommonMethods.create_or_load_urban_canopy_object(
+            path_simulation_folder=path_simulation_folder
+        )
+
     ###############################################################################################################################
+    # Write results
     # Make result dictionary
     name_simulation_folder = path_simulation_folder.split("\\")[-1]
 
