@@ -1,12 +1,64 @@
 import json
+import os
 
-from input import *
-from run_alternative_fct import run_alternative
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
+
+from inputs import *
+import simulation_steps
+
+
+def run_step(
+    step_function, run_flag, list_hbjson_folders, pool_processor, num_workers, **kwargs
+):
+    """
+
+    :param step_function:
+    :param run_flag: bool, if True, the step will be executed
+    :param list_hbjson_folders:
+    :param pool_processor:
+    :param num_processes:
+    :param kwargs:
+    :return:
+    """
+    if not run_flag:
+        print(f"Skipping step: {step_function.__name__}")
+        return
+    if pool_processor == "thread":
+        executor = ThreadPoolExecutor(max_workers=num_workers)
+    elif pool_processor == "process":
+        executor = ProcessPoolExecutor(max_workers=num_workers)
+    else:
+        raise ValueError("pool_processor must be 'thread' or 'process'")
+
+    futures = []
+    for path_folder_hbjson in list_hbjson_folders:
+        name_simulation_folder = path_folder_hbjson.split("\\")[-1]
+        path_simulation_folder = os.path.join(
+            path_dir_simulation_all_alternatives, name_simulation_folder
+        )
+        if step_function == simulation_steps.load_buildings:
+            future = executor.submit(
+                step_function,
+                path_simulation_folder=path_simulation_folder,
+                path_folder_hbjson=path_folder_hbjson,
+                **kwargs,
+            )
+        else:
+            future = executor.submit(
+                step_function, path_simulation_folder=path_simulation_folder, **kwargs
+            )
+
+        futures.append(future)
+
+    results = [future.result() for future in futures]
+    executor.shutdown()
+    return
 
 
 def main():
 
-    # Run the simulation for all alternatives
+    ###### Run the simulation for all alternatives ######\
+    # Init Urban Canopy and load buildings
 
     # Loop over all the alternatives
     for path_folder_hbjson in list_hbjson_folders:
