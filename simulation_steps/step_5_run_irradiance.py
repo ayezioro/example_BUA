@@ -1,9 +1,4 @@
-from bua.config.config_default_values_user_parameters import (
-    default_efficiency_computation_method,
-)
 from bua.simulation_steps import *
-
-from bua.building import BuildingModeled
 
 
 def run_radiation_simulation(

@@ -29,6 +29,16 @@ zone_area = 7202.56  # Plot Area
 
 
 # Flags for the simulation, DO NOT CHANGE THESE UNLESS YOU KNOW WHAT YOU ARE DOING
+(
+    run_load_buildings,
+    run_mesh_generation,
+    run_context_filter,
+    run_ubes,
+    run_radiation_simulation,
+    run_bipv_simulation,
+    run_results_extraction,
+) = (False, False, False, False, False, False, False)
+
 run_load_buildings = True
 run_mesh_generation = True
 run_context_filter = True
@@ -37,10 +47,28 @@ run_radiation_simulation = True
 run_bipv_simulation = True
 run_results_extraction = True
 
+# Number of parallel processes to run
+num_workers_processes = 20
+num_worker_threads = 30
+
+# Inputs Mesh generation
+bipv_on_facades = (True,)
+bipv_on_roof = (True,)
+roof_grid_size_x = (2.05,)
+roof_grid_size_y = (1.0,)
+facades_grid_size_x = (1.05,)
+facades_grid_size_y = (1.05,)
+offset_dist = (0.1,)
+
+# Context filter inputs
+min_vf_criterion = (0.001,)
+number_of_rays = (9,)
+consider_windows = (False,)
+keep_discarded_faces = (False,)
+
+
 # BIPV scenarions
-
-
-scenarios_bipv = {
+bipv_scenarios = {
     "BIPV_Scenario_1": {
         "minimum_panel_eroi": 1.5,  # [1.2:2.5]
         "minimum_economic_roi": 1.1,  # [1.1:1.4 for mortar. x.x for stone, y.y for metal]

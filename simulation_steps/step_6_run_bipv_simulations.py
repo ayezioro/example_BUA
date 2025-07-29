@@ -6,7 +6,7 @@ from bua.config.config_default_values_user_parameters import (
 )
 
 
-def run_bipv_simulations(
+def run_bipv_simulation(
     path_simulation_folder,
     zone_area,
     bipv_scenario_identifier,

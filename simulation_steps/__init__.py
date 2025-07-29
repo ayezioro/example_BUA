@@ -3,5 +3,5 @@ from step_2_mesh_generation import generate_mesh_on_buildings
 from step_3_context_filtering import perform_context_selection
 from step_4_run_ubes import run_ubes
 from step_5_run_irradiance import run_radiation_simulation
-from step_6_run_bipv_simulations import run_bipv_simulations
+from step_6_run_bipv_simulations import run_bipv_simulation
 from step_7_extract_results import extract_results
