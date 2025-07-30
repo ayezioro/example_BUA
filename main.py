@@ -69,7 +69,7 @@ def main():
     )
     # Generate meshes
     run_step(
-        step_function=simulation_steps.generate_meshes,
+        step_function=simulation_steps.generate_mesh_on_buildings,
         run_flag=run_mesh_generation,
         list_hbjson_folders=list_hbjson_folders,
         pool_processor="process",
@@ -111,6 +111,7 @@ def main():
         run_flag=run_radiation_simulation,
         list_hbjson_folders=list_hbjson_folders,
         pool_processor="process",  # Check if it works with processes or threads or only sequential
+        # pool_processor="thread",
         num_workers=num_workers_processes,
         path_weather_file=path_epw,
     )

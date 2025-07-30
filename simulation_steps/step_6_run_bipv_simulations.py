@@ -10,7 +10,7 @@ def run_bipv_simulation(
     path_simulation_folder,
     zone_area,
     bipv_scenario_identifier,
-    roof_id_pv_tech="mitrex_roof c-Si M390-A1F baseline 2025",
+    roof_id_pv_tech="mitrex_roof c-Si M390-A1F 2025",
     facades_id_pv_tech="mitrex_facades c-Si Solar Siding 350W - Dove Grey china 2025_1.0x1.0",
     roof_transport_id="China-Israel 22kg",
     facades_transport_id="China-Israel 9.5kg",

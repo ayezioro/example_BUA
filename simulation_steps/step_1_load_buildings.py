@@ -1,3 +1,4 @@
+import os
 from bua.simulation_steps import *
 
 
@@ -18,11 +19,12 @@ def load_buildings(
     urban_canopy_obj = SimulationCommonMethods.create_or_load_urban_canopy_object(
         path_simulation_folder=path_simulation_folder
     )
-    # Load context buildings
-    SimulationLoadBuildingOrGeometry.add_buildings_from_lb_polyface3d_json_in_urban_canopy(
-        urban_canopy_object=urban_canopy_obj,
-        path_lb_polyface3d_json_file=path_context_file_json,
-    )
+    if path_context_file_json is not None and os.path.isfile(path_context_file_json):
+        # Load context buildings
+        SimulationLoadBuildingOrGeometry.add_buildings_from_lb_polyface3d_json_in_urban_canopy(
+            urban_canopy_object=urban_canopy_obj,
+            path_lb_polyface3d_json_file=path_context_file_json,
+        )
 
     SimulationLoadBuildingOrGeometry.add_buildings_from_hbjson_to_urban_canopy(
         urban_canopy_object=urban_canopy_obj,
