@@ -1,28 +1,28 @@
 import os
 
 # Directory with the hbjson inputs
-path_dir_with_hbjson_alternatives = r"D:\trash\in\hbjson"
+path_dir_with_hbjson_alternatives = r"C:\Users\User\OneDrive - Technion\GH\Tanya\14\TRASHHHHHH_New-Test"
 list_hbjson_folders = [
     os.path.join(path_dir_with_hbjson_alternatives, dir_name)
     for dir_name in os.listdir(path_dir_with_hbjson_alternatives)
     if os.path.isdir(os.path.join(path_dir_with_hbjson_alternatives, dir_name))
 ]
 # Path to the context file
-# path_brep_context = os.path.join(
-#     path_dir_with_hbjson_alternatives, "Context_from_brep.json"
-# )
-path_brep_context = None
+path_brep_context = os.path.join(
+    path_dir_with_hbjson_alternatives, r"C:\Users\User\OneDrive - Technion\GH\Tanya\14\Alternatives_JSONs\Context_from_brep.json"
+)
+# path_brep_context = None
 
 # Directory where all the simulation will be run
 path_dir_simulation_all_alternatives = (
-    r"D:\trash\res"
+    r"C:\WorkingFolder\BUA_Python\14\TestNewVersion"
 )
 # Path to the JSON results file
 path_json_results_file = os.path.join(
     path_dir_simulation_all_alternatives, "results.json"
 )
 # Path to the EPW weather file
-path_epw = r"D:\trash\in\IS_5280_A_Tel_Aviv.epw"
+path_epw = r"C:\IsraelWeatheFiles_2007-2021_WindStandarized\ISR_TA_Tel.Aviv-Sde.Dov_.AP_.401762_TMYx.2007-2021_WindStandardized_Modified IMS.epw"
 # Coefficient of Performance for heating and cooling
 cop_heating = 3
 cop_cooling = 3
@@ -71,12 +71,12 @@ keep_discarded_faces = False
 
 # BIPV scenarions
 bipv_scenarios = {
-    "BIPV_Scenario_1": {
+    "BIPV_Scenario_1_prma20_rfiy5_irly40": {
         "minimum_panel_eroi": 1.5,  # [1.2:2.5]
         "minimum_economic_roi": 1.1,  # [1.1:1.4 for mortar. x.x for stone, y.y for metal]
         "start_year": 2024,
         "end_year": 2084,
-        "roof_id_pv_tech":"mitrex_roof c-Si M390-A1F 2025",
+        "roof_id_pv_tech":"mitrex_roof c-Si M390-A1F baseline 2025",
         "facades_id_pv_tech":"mitrex_facades c-Si Solar Siding 350W - Dove Grey china 2025_1.0x1.0",
         "roof_transport_id":"China-Israel 22kg",
         "facades_transport_id":"China-Israel 9.5kg",
@@ -85,18 +85,18 @@ bipv_scenarios = {
         "replacement_frequency_in_years": 5,  # [5:10]
         "infrastructure_replacement_last_year": 40,  # [40:50]
     },
-    "BIPV_Scenario_2": {
+    "BIPV_Scenario_2_prma30_rfiy10_irly50": {
         "minimum_panel_eroi": 1.5,  # [1.2:2.5]
         "minimum_economic_roi": 1.1,  # [1.1:1.4 for mortar. x.x for stone, y.y for metal]
         "start_year": 2024,
         "end_year": 2084,
-        "roof_id_pv_tech": "mitrex_roof c-Si M390-A1F 2025",
+        "roof_id_pv_tech": "mitrex_roof c-Si M390-A1F baseline 2025",
         "facades_id_pv_tech": "mitrex_facades c-Si Solar Siding 350W - Dove Grey china 2025_1.0x1.0",
         "roof_transport_id": "China-Israel 22kg",
         "facades_transport_id": "China-Israel 9.5kg",
         "replacement_scenario": "replace_all_panels_every_X_years",
-        "panel_replacement_min_age": 20,  # [20:30]
-        "replacement_frequency_in_years": 5,  # [5:10]
-        "infrastructure_replacement_last_year": 40,  # [40:50]
+        "panel_replacement_min_age": 30,  # [20:30]
+        "replacement_frequency_in_years": 10,  # [5:10]
+        "infrastructure_replacement_last_year": 50,  # [40:50]
     },
 }
