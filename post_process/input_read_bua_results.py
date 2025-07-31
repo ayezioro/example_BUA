@@ -10,3 +10,5 @@ path_dir_simulation_all_alternatives  = r"C:\Users\ayezi\OneDrive - Technion\GH\
 path_json_results_file = os.path.join(path_dir_simulation_all_alternatives, "results.json")
 path_plot_results = os.path.join(path_dir_simulation_all_alternatives, "EnergyResults")
 
+zone_area = 7202.56    # Plot Area
+

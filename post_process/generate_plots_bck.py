@@ -1,4 +1,3 @@
-
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -7,17 +6,15 @@ from input_read_bua_results import *
 
 def main():
     # === CONFIG ===
-    output_folder = path_dir_simulation_all_alternatives  # unified output folder
+    # output_folder = r"C:\Users\YourName\Documents\EnergyResults"  # <<< UPDATE this
+    # output_folder = path_plot_results
+    output_folder = path_dir_simulation_all_alternatives
     excel_path = os.path.join(output_folder, "energy_results_combined.xlsx")
     plots_folder = os.path.join(output_folder, "plots")
     os.makedirs(plots_folder, exist_ok=True)
 
-    # Define plot area for conversion from energy density to total kWh
-    # plot_area = 10000  # <-- UPDATE this value as needed
-    plot_area = zone_area
-
-    print("Output folder:", output_folder)
-    print("Plots folder:", plots_folder)
+    # print(path_plot_results)
+    # print('output folder ', output_folder, ' plots folder ', plots_folder)
 
     # === Load Data ===
     df_bes = pd.read_excel(excel_path, sheet_name="Building_Energy")
@@ -94,34 +91,10 @@ def main():
     plt.savefig(os.path.join(plots_folder, "harvested_energy_density_by_case_scenario.png"))
     plt.close()
 
-    # === Plot 6: Urban Total vs Harvested Energy per Scenario (converted to kWh) ===
-    # Urban total energy (kWh)
-    urban_totals = df_ubes[["case", "total"]].copy()
-    urban_totals["type"] = "Urban Total"
-    urban_totals.rename(columns={"total": "value"}, inplace=True)
-
-    # Harvested energy (kWh) = density * plot_area
-    harvested = df_kpis[["case", "scenario", "harvested energy density [Kwh/m2] - zone - total"]].copy()
-    harvested["value"] = harvested["harvested energy density [Kwh/m2] - zone - total"] * plot_area
-    harvested["type"] = harvested["scenario"]
-
-    # Combine
-    plot_df = pd.concat([
-        urban_totals[["case", "type", "value"]],
-        harvested[["case", "type", "value"]]
-    ])
-
-    # Plot
-    plt.figure(figsize=(12, 6))
-    sns.barplot(data=plot_df, x="case", y="value", hue="type")
-    plt.title("Urban Energy Demand vs Harvested Energy by Scenario")
-    plt.ylabel("Energy [kWh]")
-    plt.xticks(rotation=45)
-    plt.tight_layout()
-    plt.savefig(os.path.join(plots_folder, "urban_vs_harvested_energy.png"))
-    plt.close()
-
     print(f"✅ All plots saved in: {plots_folder}")
+
+
+
 
 if __name__ == '__main__':
     main()
