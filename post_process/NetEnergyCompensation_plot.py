@@ -9,13 +9,11 @@ def main():
     # === Config ===
     output_folder = path_dir_simulation_all_alternatives
     excel_path = os.path.join(output_folder, "energy_results_combined.xlsx")
-    # excel_path = r"./energy_results_combined.xlsx"  # Update if needed
     sheet_name = "KPIs"
 
     plots_folder = os.path.join(output_folder, "plots")
     os.makedirs(plots_folder, exist_ok=True)
     output_path = os.path.join(plots_folder, "net_energy_compensation_stack_column.png")
-    # output_path = "./net_energy_stacked_plot.png"
 
     # === Read Data ===
     df = pd.read_excel(excel_path, sheet_name=sheet_name)
@@ -23,57 +21,44 @@ def main():
     df.rename(columns={"net energy compensation - total": "Comp"}, inplace=True)
     df["Use"] = 1.0 - df["Comp"]
     df["Comp [%]"] = df["Comp"] * 100
-    df["Use [%]"] = df["Use"] * 100
-    df["label"] = list(zip(df["Case"].astype(str), df["Scenario"].astype(str)))
+    df["Use [%]"] = df["Use [%]"] = df["Use"] * 100
 
-    # === Prepare values ===
-    x = list(range(len(df)))
-    x_labels = [lbl[1] for lbl in df["label"]]  # Scenarios
-    x_cases = [lbl[0] for lbl in df["label"]]   # Cases
-
+    cases = df["Case"].astype(str).tolist()
+    scenarios = df["Scenario"].astype(str).tolist()
     comp = df["Comp [%]"]
     use = df["Use [%]"]
+    x = list(range(len(df)))
 
-    # === Set up custom layout with more vertical space ===
-    fig = plt.figure(figsize=(16, 12))
-    # gs = GridSpec(12, 1, height_ratios=[7, 0.5, 1.5, 1, 1, 1])  # plot, spacing, scenarios, spacing, cases, legend
-    gs = GridSpec(6, 1, height_ratios=[7, 0.5, 1.5, 1, 1, 1])
+    # === Set up layout ===
+    fig = plt.figure(figsize=(16, 14))
+    gs = GridSpec(6, 1, height_ratios=[240, 1, 2.5, 1, 1.5, 4])  # plot, space, scenario text, space, case text, legend
 
     # === Bar chart ===
     ax_main = fig.add_subplot(gs[0, 0])
-    bars1 = ax_main.bar(x, comp, color="#08306B", edgecolor="black")
-    bars2 = ax_main.bar(x, use, bottom=comp, color="white", edgecolor="black")
-
+    ax_main.bar(x, comp, color="#08306B", edgecolor="black")
+    ax_main.bar(x, use, bottom=comp, color="white", edgecolor="black")
     ax_main.set_ylim(0, 100)
-    ax_main.set_ylabel("Percentage [%]", fontsize=14)
-    ax_main.set_title("Net Energy Use and Compensation", fontsize=16, pad=20)
-    ax_main.set_xticks([])  # Hide default x-axis ticks
+    ax_main.set_ylabel("Percentage [%]", fontsize=18)
+    ax_main.set_title("Net Energy Use and Compensation", fontsize=24, pad=20)
+    ax_main.set_xticks([])  # hide x-axis ticks
 
-    # === Scenario axis ===
+    # === Manual Scenario Text ===
     ax_scenarios = fig.add_subplot(gs[2, 0], sharex=ax_main)
     ax_scenarios.set_xlim(ax_main.get_xlim())
     ax_scenarios.set_ylim(0, 1)
-    ax_scenarios.set_xticks(x)
-    ax_scenarios.set_xticklabels(x_labels, rotation=90, fontsize=10)
-    ax_scenarios.tick_params(bottom=False)
-    ax_scenarios.spines['top'].set_visible(False)
-    ax_scenarios.spines['right'].set_visible(False)
-    ax_scenarios.spines['left'].set_visible(False)
-    ax_scenarios.spines['bottom'].set_visible(False)
-    ax_scenarios.set_yticks([])
+    ax_scenarios.axis("off")
+    # for i, txt in enumerate(scenarios):
+    #     ax_scenarios.text(i, 0, txt, fontsize=12, rotation=90, ha='center', va='bottom')
+    for i, txt in enumerate(scenarios):
+        ax_scenarios.text(i, -20.5, txt, fontsize=12, rotation=90, ha='center', va='bottom')
 
-    # === Case axis ===
+    # === Manual Case Text ===
     ax_cases = fig.add_subplot(gs[4, 0], sharex=ax_main)
     ax_cases.set_xlim(ax_main.get_xlim())
     ax_cases.set_ylim(0, 1)
-    ax_cases.set_xticks(x)
-    ax_cases.set_xticklabels(x_cases, rotation=0, fontsize=10)
-    ax_cases.tick_params(bottom=False)
-    ax_cases.spines['top'].set_visible(False)
-    ax_cases.spines['right'].set_visible(False)
-    ax_cases.spines['left'].set_visible(False)
-    ax_cases.spines['bottom'].set_visible(False)
-    ax_cases.set_yticks([])
+    ax_cases.axis("off")
+    for i, txt in enumerate(cases):
+        ax_cases.text(i, 0, txt, fontsize=14, rotation=0, ha='center', va='top')
 
     # === Legend at the very bottom ===
     ax_legend = fig.add_subplot(gs[5, 0])
@@ -86,18 +71,20 @@ def main():
         handles=legend_elements,
         loc='center',
         ncol=2,
-        fontsize=12,
+        fontsize=18,
         frameon=False
     )
 
     # === Final adjustments ===
-    plt.subplots_adjust(hspace=1.2, top=0.92, bottom=0.04)
+    plt.subplots_adjust(hspace=0.65, top=0.93, bottom=0.03)
     plt.savefig(output_path, dpi=300)
     print(f"✅ Plot saved to: {output_path}")
 
-
 if __name__ == '__main__':
     main()
+
+
+
 
 
 
