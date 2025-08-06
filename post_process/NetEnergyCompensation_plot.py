@@ -30,7 +30,7 @@ def main():
     use = df["use [%]"]
     x = list(range(len(df)))
 
-    # === Identify Case Transitions for Grouping ===
+    # === Identify Case Transitions for Grouping  ===
     case_transitions = [0]
     for i in range(1, len(cases)):
         if cases[i] != cases[i - 1]:
