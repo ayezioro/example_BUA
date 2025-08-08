@@ -5,16 +5,16 @@ import seaborn as sns
 from input_read_bua_results import *
 
 # === Set font globally ===
-plt.rcParams['font.family'] = 'Calibri'  # Can also use 'Arial', 'Times New Roman', etc.
+plt.rcParams['font.family'] = 'Calibri'  # Or: 'Arial', 'Times New Roman'
 
 def cm_to_inches(w_cm, h_cm):
     return (w_cm / 2.54, h_cm / 2.54)
 
 def plot_scatter(data, x_col, y_col, hue_col, style_col, title, xlabel, ylabel, filename,
-                 legend_title="Legend", legend_loc="best", size=220, palette="Set2",
-                 xlim=None, ylim=None, figsize_cm=(20, 12), dpi=300):
+                 legend_title="Legend", size=180, palette="Set2",
+                 xlim=None, ylim=None, figsize_cm=(50, 28), dpi=300):
 
-    plt.figure(figsize=cm_to_inches(figsize_cm[0], figsize_cm[1]))  # A5 landscape size
+    fig, ax = plt.subplots(figsize=cm_to_inches(figsize_cm[0], figsize_cm[1]))
 
     sns.scatterplot(
         data=data,
@@ -24,54 +24,50 @@ def plot_scatter(data, x_col, y_col, hue_col, style_col, title, xlabel, ylabel, 
         style=style_col,
         s=size,
         palette=palette,
-        edgecolor="black"
+        edgecolor="black",
+        ax=ax
     )
 
-    # Title and labels
-    plt.title(title, fontsize=32)
-    plt.xlabel(xlabel, fontsize=28)
-    plt.ylabel(ylabel, fontsize=28)
-    # plt.legend(frameon=False)
+    # Titles and labels
+    ax.set_title(title, fontsize=32)
+    ax.set_xlabel(xlabel, fontsize=28)
+    ax.set_ylabel(ylabel, fontsize=28)
 
     # Axis ticks
-    plt.xticks(fontsize=18)
-    plt.yticks(fontsize=18)
+    ax.tick_params(axis='both', labelsize=18)
 
     # Axis limits
     if xlim:
-        plt.xlim(xlim)
+        ax.set_xlim(xlim)
     if ylim:
-        plt.ylim(ylim)
+        ax.set_ylim(ylim)
 
     # Grid style
-    plt.grid(True, color='lightgray', linestyle='--', linewidth=1)
-    # linestyle: '--', '-.', ':', or '-' (solid)
-    # Legend customization
-    legend = plt.legend(
-        title=legend_title,
-        loc=legend_loc,
-        fontsize=12,
-        title_fontsize=13,
-        prop={'size': 14},
-        labelspacing=1.0,
-        borderpad=1.0
-    )
+    ax.grid(True, color='lightgray', linestyle='--', linewidth=1)
 
-    # legend.get_frame().set_facecolor('white')   # solid white background
+    # === Legend outside to the right ===
+    legend = ax.legend(
+        title=legend_title,
+        loc="center left",
+        bbox_to_anchor=(1.02, 0.5),  # Outside to the right, centered vertically
+        fontsize=12,
+        title_fontsize=14,
+        borderpad=1.0,
+        labelspacing=1.0,
+        frameon=True
+    )
     legend.get_frame().set_facecolor('none')
-    # legend.get_frame().set_edgecolor('none')
-    legend.get_frame().set_edgecolor('gray')    # gray border
+    legend.get_frame().set_edgecolor('gray')
     legend.get_frame().set_linewidth(1)
 
-    # === Fix: Set consistent marker sizes in legend ===
+    # === Ensure consistent marker size in legend ===
     for handle in legend.legend_handles:
         if hasattr(handle, "set_sizes"):
-            handle.set_sizes([size])
+            handle.set_sizes([size * 0.5])  # 👈 Reduce legend size
 
-    # Final save and close
-    plt.grid(True)
+    # Final save
     plt.tight_layout()
-    plt.savefig(filename, dpi=dpi)
+    plt.savefig(filename, dpi=dpi, bbox_inches='tight')  # ensure legend is included
     print(f"✅ Saved: {filename}")
     plt.close()
 
@@ -81,32 +77,34 @@ def main():
     plots_folder = os.path.join(output_folder, "plots")
     os.makedirs(plots_folder, exist_ok=True)
 
-    plot_area = 7202.56  # <-- UPDATE if needed
+    plot_area = 7202.56  # <-- update if needed
 
+    # === Read and normalize column names ===
     df_kpis = pd.read_excel(excel_path, sheet_name="KPIs")
-    df_ubes = pd.read_excel(excel_path, sheet_name="Urban_Energy")
+    df_kpis.columns = df_kpis.columns.str.lower()
 
-    # === Custom Scatter Plot: EROI vs Net Energy Compensation ===
+    df_ubes = pd.read_excel(excel_path, sheet_name="Urban_Energy")
+    df_ubes.columns = df_ubes.columns.str.lower()
+
+    # === Scatter Plot: EROI vs Net Energy Compensation ===
     plot_scatter(
         data=df_kpis,
         x_col="net energy compensation - total",
         y_col="eroi - total",
-        hue_col="Scenario",
-        style_col="Case",
+        hue_col="scenario",          # <-- lowercase-safe
+        style_col="case",            # <-- lowercase-safe
         title="EROI vs Net Energy Compensation",
         xlabel="Net Energy Compensation [kWh]",
         ylabel="EROI",
         filename=os.path.join(plots_folder, "custom_eroi_vs_net_energy.png"),
         legend_title="Scenario",
-        legend_loc="lower right",
         xlim=(0.16, 0.26),
         ylim=(2.8, 3.5),
-        figsize_cm=(42, 28),   # A5 landscape
+        figsize_cm=(50, 40),
         dpi=300
     )
 
-    print("✅ Scatter plot with axis bounds saved.")
+    print("✅ Scatter plot with external legend saved.")
 
 if __name__ == '__main__':
     main()
-

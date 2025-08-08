@@ -38,7 +38,7 @@ def main():
     case_transitions.append(len(cases))  # Add end marker
 
     # === Set up layout ===
-    fig = plt.figure(figsize=(18, 14))
+    fig = plt.figure(figsize=(48, 14))
     gs = GridSpec(6, 1, height_ratios=[200, 1, 2.5, 1, 1.5, 4])  # plot, space, scenarios, space, cases, legend
 
     # === Bar chart ===
