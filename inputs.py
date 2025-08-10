@@ -43,11 +43,11 @@ zone_area = 7202.56  # Plot Area
     run_results_extraction,
 ) = (False, False, False, False, False, False, False)
 
-# run_load_buildings = True
-# run_mesh_generation = True
-# run_context_filter = True
-# run_ubes = True
-# run_radiation_simulation = True
+run_load_buildings = True
+run_mesh_generation = True
+run_context_filter = True
+run_ubes = True
+run_radiation_simulation = True
 run_bipv_simulation = True
 run_results_extraction = True
 

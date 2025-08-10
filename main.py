@@ -110,10 +110,10 @@ def main():
         step_function=simulation_steps.run_radiation_simulation,
         run_flag=run_radiation_simulation,
         list_hbjson_folders=list_hbjson_folders,
-        pool_processor="process",  # Check if it works with processes or threads or only sequential
-        # pool_processor="thread",
-        num_workers=num_workers_processes,
-        # num_workers=1,    # Just in case: if the "thread" option does not work, there change the num_workers to 1
+        # pool_processor="process",  # Check if it works with processes or threads or only sequential
+        pool_processor="thread",
+        # num_workers=num_workers_processes,
+        num_workers=1,    # Just in case: if the "thread" option does not work, there change the num_workers to 1
         path_weather_file=path_epw,
     )
     # Run BIPV simulations
@@ -127,6 +127,8 @@ def main():
             zone_area=zone_area,
             bipv_scenario_identifier=bipv_scenario_identifier,
             **bipv_scenario_in_dict,
+
+
         )
     # Extract results
     run_step(
