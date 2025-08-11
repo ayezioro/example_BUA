@@ -172,4 +172,46 @@ bipv_scenarios = {
     #     "replacement_frequency_in_years": 5,  # [5:10]
     #     "infrastructure_replacement_last_year": 40,  # [40:50]
     # },
+    "BIPV_Scenario_7_Fibercement_USD180": {
+        "minimum_panel_eroi": 1.5,  # [1.2:2.5]
+        "minimum_economic_roi": 1.1,  # [1.1:1.4 for mortar. x.x for stone, y.y for metal]
+        "start_year": 2024,
+        "end_year": 2084,
+        "roof_id_pv_tech":"mitrex_roof c-Si M390-A1F baseline 2025",
+        "facades_id_pv_tech":"mitrex_facades c-Si Solar Siding 350W - Dove Grey china 2025_1.0x1.0",
+        "roof_transport_id":"China-Israel 22kg",
+        "facades_transport_id":"China-Israel 9.5kg",
+        "replacement_scenario": "replace_failed_panels_every_X_years",
+        "panel_replacement_min_age": 20,  # [20:30]
+        "replacement_frequency_in_years": 5,  # [5:10]
+        "infrastructure_replacement_last_year": 40,  # [40:50]
+    },
+    "BIPV_Scenario_8_Fibercement_USD180_eroi_1.1": {
+        "minimum_panel_eroi": 1.1,  # [1.2:2.5]
+        "minimum_economic_roi": 1.1,  # [1.1:1.4 for mortar. x.x for stone, y.y for metal]
+        "start_year": 2024,
+        "end_year": 2084,
+        "roof_id_pv_tech":"mitrex_roof c-Si M390-A1F baseline 2025",
+        "facades_id_pv_tech":"mitrex_facades c-Si Solar Siding 350W - Dove Grey china 2025_1.0x1.0",
+        "roof_transport_id":"China-Israel 22kg",
+        "facades_transport_id":"China-Israel 9.5kg",
+        "replacement_scenario": "replace_failed_panels_every_X_years",
+        "panel_replacement_min_age": 20,  # [20:30]
+        "replacement_frequency_in_years": 5,  # [5:10]
+        "infrastructure_replacement_last_year": 40,  # [40:50]
+    },
+    "BIPV_Scenario_9_SubstFacMat_METAL-405USm2_eroi_1.5": {
+        "minimum_panel_eroi": 1.5,  # [1.2:2.5] - 1.1 to encourage more PV panels
+        "minimum_economic_roi": 1.1,  # [1.1:1.4 for mortar. x.x for stone, y.y for metal]
+        "start_year": 2024,
+        "end_year": 2084,
+        "roof_id_pv_tech":"mitrex_roof c-Si M390-A1F baseline 2025",
+        "facades_id_pv_tech":"mitrex_facades c-Si Solar Siding 350W - Dove Grey china 2025_1.0x1.0_SubstFacMat_METAL-405USm2",
+        "roof_transport_id":"China-Israel 22kg",
+        "facades_transport_id":"China-Israel 9.5kg",
+        "replacement_scenario": "replace_failed_panels_every_X_years",
+        "panel_replacement_min_age": 20,  # [20:30]
+        "replacement_frequency_in_years": 5,  # [5:10]
+        "infrastructure_replacement_last_year": 40,  # [40:50]
+    },
 }
