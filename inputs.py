@@ -2,7 +2,8 @@ import os
 
 # Directory with the hbjson inputs
 # path_dir_with_hbjson_alternatives = r"C:\Users\User\OneDrive - Technion\GH\Tanya\14\TRASHHHHHH_New-Test"
-path_dir_with_hbjson_alternatives = r"C:\Users\User\OneDrive - Technion\GH\Tanya\14\TRASHHHHHH"
+# path_dir_with_hbjson_alternatives = r"C:\Users\User\OneDrive - Technion\GH\Tanya\14\TRASHHHHHH"
+path_dir_with_hbjson_alternatives = r"C:\Users\User\OneDrive - Technion\GH\Tanya\14\Alternatives_JSONs"
 list_hbjson_folders = [
     os.path.join(path_dir_with_hbjson_alternatives, dir_name)
     for dir_name in os.listdir(path_dir_with_hbjson_alternatives)
@@ -158,20 +159,6 @@ bipv_scenarios = {
         "replacement_frequency_in_years": 5,  # [5:10]
         "infrastructure_replacement_last_year": 40,  # [40:50]
     },
-    # "BIPV_Scenario_7_SubstFacMat_STONE-619USm2": {
-    #     "minimum_panel_eroi": 1.1,  # [1.2:2.5] - 1.1 to encourage more PV panels
-    #     "minimum_economic_roi": 1.1,  # [1.1:1.4 for mortar. x.x for stone, y.y for metal]
-    #     "start_year": 2024,
-    #     "end_year": 2084,
-    #     "roof_id_pv_tech":"mitrex_roof c-Si M390-A1F baseline 2025",
-    #     "facades_id_pv_tech":"mitrex_facades c-Si Solar Siding 350W - Dove Grey china 2025_1.0x1.0_SubstFacMat_STONE-619USm2",
-    #     "roof_transport_id":"China-Israel 22kg",
-    #     "facades_transport_id":"China-Israel 9.5kg",
-    #     "replacement_scenario": "replace_failed_panels_every_X_years",
-    #     "panel_replacement_min_age": 20,  # [20:30]
-    #     "replacement_frequency_in_years": 5,  # [5:10]
-    #     "infrastructure_replacement_last_year": 40,  # [40:50]
-    # },
     "BIPV_Scenario_7_Fibercement_USD180": {
         "minimum_panel_eroi": 1.5,  # [1.2:2.5]
         "minimum_economic_roi": 1.1,  # [1.1:1.4 for mortar. x.x for stone, y.y for metal]
@@ -214,4 +201,18 @@ bipv_scenarios = {
         "replacement_frequency_in_years": 5,  # [5:10]
         "infrastructure_replacement_last_year": 40,  # [40:50]
     },
+    # "BIPV_Scenario_7_SubstFacMat_STONE-619USm2": {
+    #     "minimum_panel_eroi": 1.1,  # [1.2:2.5] - 1.1 to encourage more PV panels
+    #     "minimum_economic_roi": 1.1,  # [1.1:1.4 for mortar. x.x for stone, y.y for metal]
+    #     "start_year": 2024,
+    #     "end_year": 2084,
+    #     "roof_id_pv_tech":"mitrex_roof c-Si M390-A1F baseline 2025",
+    #     "facades_id_pv_tech":"mitrex_facades c-Si Solar Siding 350W - Dove Grey china 2025_1.0x1.0_SubstFacMat_STONE-619USm2",
+    #     "roof_transport_id":"China-Israel 22kg",
+    #     "facades_transport_id":"China-Israel 9.5kg",
+    #     "replacement_scenario": "replace_failed_panels_every_X_years",
+    #     "panel_replacement_min_age": 20,  # [20:30]
+    #     "replacement_frequency_in_years": 5,  # [5:10]
+    #     "infrastructure_replacement_last_year": 40,  # [40:50]
+    # },
 }
