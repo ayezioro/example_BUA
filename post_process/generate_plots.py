@@ -8,7 +8,8 @@ from input_read_bua_results import *
 def main():
     # === CONFIG ===
     output_folder = path_dir_simulation_all_alternatives  # unified output folder
-    excel_path = os.path.join(output_folder, "energy_results_combined.xlsx")
+    # excel_path = os.path.join(output_folder, "energy_results_combined.xlsx")
+    excel_path = os.path.join(output_folder, "energy_results_combined_MarkedRelevant_Picked-Scenarios.xlsx")
     plots_folder = os.path.join(output_folder, "plots")
     os.makedirs(plots_folder, exist_ok=True)
 

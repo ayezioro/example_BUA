@@ -73,7 +73,8 @@ def plot_scatter(data, x_col, y_col, hue_col, style_col, title, xlabel, ylabel, 
 
 def main():
     output_folder = path_dir_simulation_all_alternatives
-    excel_path = os.path.join(output_folder, "energy_results_combined.xlsx")
+    # excel_path = os.path.join(output_folder, "energy_results_combined.xlsx")
+    excel_path = os.path.join(output_folder, "energy_results_combined_MarkedRelevant_Picked-Scenarios.xlsx")
     plots_folder = os.path.join(output_folder, "plots")
     os.makedirs(plots_folder, exist_ok=True)
 
