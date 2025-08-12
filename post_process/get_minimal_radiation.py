@@ -1,15 +1,7 @@
 import json
 import os
 from pathlib import Path
-
 from inputs import path_dir_simulation_all_alternatives
-
-
-def get_minimal_radiation_for_kept_panel2(path_simulation_folder):
-    # Dummy example - replace with your actual function
-    value1 = 123  # example return
-    value2 = 456  # example return
-    return value1, value2
 
 def get_minimal_radiation_for_kept_panel(path_simulation_folder):
     path_json = os.path.join(path_simulation_folder, "urban_canopy.json")
