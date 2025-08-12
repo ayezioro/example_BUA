@@ -1,6 +1,7 @@
 import json
 import os
 from pathlib import Path
+import pandas as pd
 from inputs import path_dir_simulation_all_alternatives
 
 def get_minimal_radiation_for_kept_panel(path_simulation_folder):
@@ -81,6 +82,31 @@ def main():
 
     print(f"Results saved to {output_file}")
 
+    # Export the json file to excel
+    # Load your JSON file
+    with open(output_file, "r") as f:
+        data = json.load(f)
+
+    # Convert to a list of dictionaries
+    rows = []
+    for key, value in data.items():
+        row = {
+            "case_name": key,
+            "minRad": value["minRad"]
+        }
+        rows.append(row)
+
+    # Create a DataFrame
+    df = pd.DataFrame(rows)
+
+    # Save to Excel
+    output_excel_file = path / "minRad_results.xlsx"
+    # df.to_excel("minRad_results.xlsx", index=False)
+    df.to_excel(output_excel_file, index=False)
+
+    # print("Excel file saved as minRad_results.xlsx")
+    print(f"Excel file saved to {output_file}")
 
 if __name__ == "__main__":
     main()
+
